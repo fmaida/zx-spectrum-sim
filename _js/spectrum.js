@@ -73,7 +73,7 @@ function inizializza() {
     //$.setText(0, 0, "01234567890123456789012345678901");
     $.setText(0, 22, "      -= START THE TAPE =-      ", 15, 0);
     $.setBorder(13);
-    $.simulaInizioCaricamento(0, "CESCO");
+    $.simulaInizioCaricamento(0, "KAIKO.it");
     $.scriviPagina(6000, "Benvenuti nel mio sito internet!\ne\' un piacere avervi qui, anche se a dire la verita\' non ho ancora\navuto modo di preparare molto da farvi vedere! per cui vi dovrete accontentare suppongo...");
     $.simulaTermineCaricamento(10000, false);
 }
@@ -246,6 +246,7 @@ $.simulaTermineCaricamento = function(P_nRitardo, P_lCaricamentoABuonFine) {
         $.wait(P_nRitardo + 300, "$.clearScreen()");
     } else {
         $.wait(P_nRitardo + 100, "$.setBorder(15)");
+        $.wait(P_nRitardo + 100, "$.setText(0, 22, '                                ');");
         $.wait(P_nRitardo + 100, "$.setText(0, 23, 'R Tape loading error, 0:1');");
     }
 };
