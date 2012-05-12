@@ -11,7 +11,7 @@ html {
     background: #fff; /* url("../_img/background_loading.gif") repeat left top; */
     font-family: "ZX Spectrum", monaco, "courier new", courier, monospace;
     font-size: 24px;
-    line-height: 1;
+    line-height: 1.0;
     min-width: 480px;
     min-height: 512px;
 }
@@ -26,6 +26,7 @@ body {
     top: 50%;
     left: 50%;
     display: table;
+    background-color: white;
 }
 a {
     text-decoration: none;
