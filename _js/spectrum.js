@@ -113,11 +113,11 @@ vram = function () {
 
             // Imposta il byte-pixel con questi valori
             var nPos = P_nRow * 32 + P_nCol;
-            zx.vram[nPos]["char"] = P_cChar;
-            zx.vram[nPos]["foreground"] = zx.palette.getColor(P_nColor);
-            zx.vram[nPos]["background"] = zx.palette.getColor(P_nBackground);
+            vram[nPos]["char"] = P_cChar;
+            vram[nPos]["foreground"] = palette.getColor(P_nColor);
+            vram[nPos]["background"] = palette.getColor(P_nBackground);
 
-            if (nPos > zx.refresh_screen_end) zx.refresh_screen_end = nPos;
+            if (nPos > refresh_screen_end) refresh_screen_end = nPos;
 
         },
 
