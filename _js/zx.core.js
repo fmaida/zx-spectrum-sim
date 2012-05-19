@@ -19,7 +19,7 @@ init: function(P_cTarget) {
             if (zx.objBorder.refresh) zx.objBorder.refreshScreen();
             zx.loopStillWorking = false;
         }
-    }, 125); // Refresh at 8fps
+    }, 100); // Refresh at 10fps
 
 },
 

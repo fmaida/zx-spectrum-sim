@@ -27,8 +27,8 @@ function inizializza() {
     zx.objVRAM.setText(0, 22, "      -= START THE TAPE =-      ", 15, 0);
     zx.objBorder.setBorder(13);
     $.simulaInizioCaricamento(0, "KAIKO.it");
-    //$.scriviPagina(6000, "Benvenuti nel mio sito internet!\ne un piacere avervi qui, anche se a dire la verita non ho ancora\navuto modo di preparare molto da farvi vedere! per cui vi dovrete accontentare suppongo...");
-    zx.setBorder(5000, -1);
+    zx.setBorder(1000, -1);
+    $.scriviPagina("Benvenuti nel mio sito internet!\ne un piacere avervi qui, anche\nse a dire la verita non ho ancora\navuto modo di preparare molto da farvi vedere! per cui vi dovrete accontentare suppongo...");
     $.simulaTermineCaricamento(false);
 
 }
@@ -37,14 +37,19 @@ function inizializza() {
  * QUELLO CHE SEGUE E' DEPRECATO
  *
  */
-$.scriviPagina = function(P_nRitardo, P_cPagina) {
+$.scriviPagina = function(P_cPagina) {
 
     var cRighe = P_cPagina.split("\n");
-    var nInd = 0;
+    var cRiga;
+    var nInd = 0, nInd2 = 0;
 
     while (nInd < cRighe.length) {
-        var s = "zx.writeText(0, " + nInd + ", '" + cRighe[nInd] + "');";
-        zx.wait(P_nRitardo + nInd * 500, "zx.vram.setText(0, " + nInd + ", '" + cRighe[nInd] + "');");
+        cRiga = cRighe[nInd];
+        nInd2 = 0;
+        while (nInd2 < cRiga.length) {
+            zx.setText(100, nInd2, nInd, cRiga.charAt(nInd2));
+            nInd2 += 1;
+        }
         nInd += 1;
     }
 
@@ -76,38 +81,6 @@ $.simulaTermineCaricamento = function(P_lCaricamentoABuonFine) {
         zx.setText(0, 0, 22, "                                ");
         zx.setText(0, 0, 23, "R Tape loading error, 0:1       ");
     }
-};
-
-
-$.fn.writeText = function(content) {
-    content = content.replace("\p", "\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p\p");
-    this.html("");
-    var contentArray = content.split(""),
-        current = 0,
-        elem = this;
-    var nLampeggi = 64;
-    var nConteggioLampeggi = 0;
-    var cCarattere;
-    var gigio = setInterval(function() {
-        if(current < contentArray.length) {
-            if ((contentArray[current] == "\n")) contentArray[current] = "<br />";
-            if ((contentArray[current] == "\p")) contentArray[current] = "";
-            elem.html(elem.html().substr(0, elem.html().length - 1) + contentArray[current] + "&#216;");
-            current++;
-        } else {
-            nConteggioLampeggi -= 1;
-            if (nConteggioLampeggi < 0) {
-                cCarattere == "&#216;" ? cCarattere = " " : cCarattere = "&#216;";
-                nConteggioLampeggi = 8;
-            }
-            elem.html(elem.html().substr(0, elem.html().length - 1) + cCarattere);
-            nLampeggi -= 1;
-            if (nLampeggi == 0) {
-                //elem.html(elem.html().substr(0, elem.html().length - 1));
-                clearInterval(gigio);
-            }
-        }
-    }, 33);
 };
 
 /**
